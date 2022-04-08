@@ -1761,6 +1761,24 @@ class PlayState extends MusicBeatState
 				}
 				
 			});
+player2Strums.forEach(function(spr:FlxSprite)
+			{
+				if (strumming2[spr.ID])
+				{
+					spr.animation.play("confirm");
+				}
+
+				if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
+				{
+					spr.centerOffsets();
+					spr.offset.x -= 13;
+					spr.offset.y -= 13;
+				}
+				else
+					spr.centerOffsets();
+			});
+
+
 		}
 
 		if (!inCutscene)
