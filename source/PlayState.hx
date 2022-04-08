@@ -725,6 +725,7 @@ class PlayState extends MusicBeatState
 		add(strumLineNotes);
 
 		playerStrums = new FlxTypedGroup<FlxSprite>();
+		player2Strums = new FlxTypedGroup<FlxSprite>();
 
 		// startCountdown();
 
@@ -1273,6 +1274,8 @@ class PlayState extends MusicBeatState
 			if (player == 1)
 			{
 				playerStrums.add(babyArrow);
+			} else {
+				player2Strums.add(babyArrow);
 			}
 
 			babyArrow.animation.play('static');
@@ -1717,6 +1720,14 @@ class PlayState extends MusicBeatState
 						case 3:
 							dad.playAnim('singRIGHT' + altAnim, true);
 					}
+					player2Strums.forEach(function(spr:FlxSprite)
+					{
+						if (Math.abs(daNote.noteData) == spr.ID)
+						{
+							spr.animation.play('confirm');
+							sustain2(spr.ID, spr, daNote);
+						}
+					});
 
 					dad.holdTimer = 0;
 
